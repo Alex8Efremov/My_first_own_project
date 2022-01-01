@@ -1,0 +1,12 @@
+
+---
+- name: Download and install Docker Image
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: pull an image
+    shell: "docker pull aleksefremov/efremov"
+
+  - name: Create Container
+    shell: "docker run -d -p 7777:80 aleksefremov/efremov:latest"

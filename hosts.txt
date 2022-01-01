@@ -1,0 +1,11 @@
+[PROD_SERVERS_UBUNTU]
+linux_ub   ansible_host=18.197.67.218   owner="linux1"
+
+[PROD_SERVERS_REDHAT]
+linux_red   ansible_host=18.159.207.127    owner="linux2"
+
+#[PROD_SERVERS_AWS]
+#linux_AWS   ansible_host=3.127.223.20
+
+
+
