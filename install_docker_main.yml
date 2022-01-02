@@ -3,12 +3,11 @@
 - name: Download and Install Docker Image
   hosts: all
   become: yes
+  any_errors_fatal: true
 
   tasks:
   - name: Check and Print LINUX system
     debug: var=ansible_distribution
-#  - name: Check and Print LINUX version
-#    debug: var=ansible_os_family
 
   - block:   #============Dlock for Ubuntu=============
     - name: install prerequisites
