@@ -8,20 +8,21 @@
   tasks:
   - name: pull an image
     shell: "docker pull aleksefremov/efremov"
-  
-#  - name: Delete containers
-#    shell: "{{ item }}"
-#    with_items:
-#        - docker stop $(docker ps -q)
-#        - docker rm $(docker ps -a -q)
-
-  - name: Create Container
-    shell: "docker run -d -p {{ item }}:80 aleksefremov/efremov"
-    with_items: ['7777', '8888', '9999', '6666']
 
   - name: Check Containers
     shell: "docker ps -aq"
     register: resul
 
   - debug:
-      var: resul.stdout_lines[1]
+      var: resul.stdout_lines[0]
+  
+  - name: Delete containers
+    shell: "{{ item }}"
+    with_items:
+        - docker stop $(docker ps -q)
+        - docker rm $(docker ps -a -q)
+    when: resul.stdout_lines[0] != 0
+
+  - name: Create Container
+    shell: "docker run -d -p {{ item }}:80 aleksefremov/efremov"
+    with_items: ['7777', '8888', '9999', '9998']
