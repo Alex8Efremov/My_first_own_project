@@ -9,18 +9,15 @@
   - name: pull an image
     shell: "docker pull aleksefremov/efremov"
   
-  - name: Delete containers
-    shell: "{{ item }}"
-    with_items:
-        - docker stop $(docker ps -q)
-        - docker rm $(docker ps -a -q)
+#  - name: Delete containers
+#    shell: "{{ item }}"
+#    with_items:
+#        - docker stop $(docker ps -q)
+#        - docker rm $(docker ps -a -q)
 
   - name: Create Container
     shell: "docker run -d -p {{ item }}:80 aleksefremov/efremov"
     with_items: ['7777', '8888', '9999', '6666']
-
-#  - name: Second container
-#    shell: "docker run -d -p 8888:80 aleksefremov/efremov"
 
   - name: Check Containers
     shell: "docker ps -aq"
